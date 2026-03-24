@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доска объявлений</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 16px;
+            background-color: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Меню</h2>
+    <button id="add">Разместить объявление</button>
+    <button id="view">Посмотреть товары</button>
+    <button id="delete">Удалить объявление</button>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Открываем приложение на весь экран
+
+        // Обработчики нажатий
+        document.getElementById('add').onclick = () => {
+            tg.sendData(JSON.stringify({ action: 'add_item' }));
+        };
+        document.getElementById('view').onclick = () => {
+            tg.sendData(JSON.stringify({ action: 'view_items' }));
+        };
+        document.getElementById('delete').onclick = () => {
+            tg.sendData(JSON.stringify({ action: 'delete_item' }));
+        };
+    </script>
+</body>
+</html>
